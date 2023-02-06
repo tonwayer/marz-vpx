@@ -5,7 +5,8 @@
 The application is comprised of 4 parts
 
 1. webapp -> Frontend for the applicaiton (written in React and Typescript)
-2. api.orders -> Backend for the applicaiton (written in flask)
+2. api.orders -> Backend for orders (written in flask)
+2. api.products -> Backend for products (written in flask)
 3. nginx -> The proxy for the requests
 4. db -> mariadb
 
