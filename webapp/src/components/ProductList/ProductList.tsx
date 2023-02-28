@@ -13,7 +13,7 @@ const ProductList = (props: ProductListProps) => {
         >
             {listTitle}
         </h5>
-        {products.map((product, index) => <ProductItem key={index} product={product} />)}
+        {products.map((product, index) => <ProductItem key={index} {...product} />)}
     </div>
 };
 

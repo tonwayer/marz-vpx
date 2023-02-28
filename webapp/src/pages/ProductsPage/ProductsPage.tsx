@@ -7,19 +7,19 @@ const activeProducts: Product[] = [
   {
     id: 0,
     name: 'Product0',
-    photoURL: '/fake-url',
+    photoURL: 'https://picsum.photos/100/40',
     status: 'Active',
   },
   {
     id: 1,
     name: 'Product1',
-    photoURL: '/fake-url',
+    photoURL: 'https://picsum.photos/100/40',
     status: 'Active',
   },
   {
     id: 2,
     name: 'Product2',
-    photoURL: '/fake-url',
+    photoURL: 'https://picsum.photos/100/40',
     status: 'Active',
   },
 ];
@@ -28,13 +28,13 @@ const inActiveProducts: Product[] = [
   {
     id: 3,
     name: 'Product3',
-    photoURL: '/fake-url',
+    photoURL: 'https://picsum.photos/100/40',
     status: 'InActive',
   },
   {
     id: 4,
     name: 'Product4',
-    photoURL: '/fake-url',
+    photoURL: 'https://picsum.photos/100/40',
     status: 'InActive',
   },
 ];

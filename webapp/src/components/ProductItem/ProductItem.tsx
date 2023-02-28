@@ -1,16 +1,13 @@
 import React from 'react';
-import { ProductItemProps } from '../interfaces';
+import { Product } from '../interfaces';
 
-const ProductItem = (props: ProductItemProps) => {
-    const { product } = props;
-
+const ProductItem = (props: Product) => {
     return <div
         className='bg-neutral-300 flex items-center justify-between mt-1 p-3 rounded w-full'
     >
-        <div><span>Id:</span><span>{product.id}</span></div>
-        <div><span>Name:</span><span>{product.name}</span></div>
-        <div><span>Photo:</span><span>{product.photoURL}</span></div>
-        <div><span>Status:</span><span>{product.status}</span></div>
+        <img src={props.photoURL} alt={props.photoURL} />
+        <span>{props.name}</span>
+        <span>{props.id}</span>
     </div>
 }
 
