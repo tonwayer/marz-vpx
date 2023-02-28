@@ -35,10 +35,10 @@ export interface HeaderProps {
 }
 
 export interface Product {
-    id: number,
-    photoURL: string,
-    name: string,
-    status: 'Active' | 'InActive',
+    ProductID: number,
+    ProductPhotoURL: string,
+    ProductName: string,
+    ProductStatus: 'Active' | 'InActive',
 }
 
 export interface ProductItemProps {
@@ -48,4 +48,9 @@ export interface ProductItemProps {
 export interface ProductListProps {
     listTitle: string,
     products: Product[]
+}
+
+export interface ProductData {
+    Active: Product[],
+    InActive: Product[],
 }
