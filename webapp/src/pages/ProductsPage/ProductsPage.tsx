@@ -1,53 +1,65 @@
-import React from "react";
-import { Product } from "../../components/interfaces";
+import React, { useEffect, useState } from "react";
+import { ProductData } from "../../components/interfaces";
 import ProductList from "../../components/ProductList/ProductList";
+import Spinner from "../../components/Spinner/Spinner";
+import { getAllProducts } from "../ApiHelper";
 import PageWrapper from '../PageWrapper';
 
-const activeProducts: Product[] = [
-  {
-    id: 0,
-    name: 'Product0',
-    photoURL: 'https://picsum.photos/100/40',
-    status: 'Active',
-  },
-  {
-    id: 1,
-    name: 'Product1',
-    photoURL: 'https://picsum.photos/100/40',
-    status: 'Active',
-  },
-  {
-    id: 2,
-    name: 'Product2',
-    photoURL: 'https://picsum.photos/100/40',
-    status: 'Active',
-  },
-];
-
-const inActiveProducts: Product[] = [
-  {
-    id: 3,
-    name: 'Product3',
-    photoURL: 'https://picsum.photos/100/40',
-    status: 'InActive',
-  },
-  {
-    id: 4,
-    name: 'Product4',
-    photoURL: 'https://picsum.photos/100/40',
-    status: 'InActive',
-  },
-];
 
 const ProductsPage = () => {
-  return (
-    <PageWrapper>
+  const [loadingState, setLoadingState] = useState<'WAITING' | 'LOADED' | 'ERROR'>('WAITING');
+  const [data, setData] = useState<ProductData>({Active: [], InActive: []});
+
+  const getProducts = async () => {
+    setLoadingState('WAITING');
+    const { productData, errorOccured } = await getAllProducts();
+    setData(productData);
+    setLoadingState(errorOccured ? 'ERROR' : 'LOADED');
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  let content;
+  if (loadingState === 'WAITING')
+    content = (
       <div
         className="flex flex-row justify-center w-full pt-4"
+        data-testid="loading-spinner-container"
       >
-        <ProductList listTitle="Active" products={activeProducts} />
-        <ProductList listTitle="InActive" products={inActiveProducts} />
+        <Spinner />
       </div>
+    );
+  else if (loadingState === 'LOADED')
+    content = (
+      <div
+        className="flex flex-row justify-center w-full pt-4"
+        data-testid="pipeline-container"
+      >
+          <ProductList
+            listTitle='Active'
+            products={data.Active}
+          />
+          <ProductList
+            listTitle='InActive'
+            products={data.InActive}
+          />
+      </div>
+    );
+  else
+    content = (
+      <div
+        className="flex flex-row justify-center w-full pt-4 text-3xl font-bold text-white"
+        data-testid="error-container"
+      >
+        An error occured fetching the data!
+      </div>
+    );
+
+  return (
+    <PageWrapper>
+      { content }
     </PageWrapper>
   );
 };

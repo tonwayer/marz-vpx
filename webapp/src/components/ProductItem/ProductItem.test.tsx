@@ -4,10 +4,10 @@ import ProductItem from "./ProductItem"
 
 describe('ProductItem', () => {
     const props: Product = {
-        id: 0,
-        name: 'Fake Product',
-        photoURL: '/fake-url',
-        status: 'Active'
+        ProductID: 0,
+        ProductName: 'Fake Product',
+        ProductPhotoURL: '/fake-url',
+        ProductStatus: 'Active'
     }
     const renderItem = () => render(<ProductItem {...props} />);
 

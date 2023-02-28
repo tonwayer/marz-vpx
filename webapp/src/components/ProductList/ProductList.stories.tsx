@@ -9,20 +9,21 @@ export default {
 const Template: ComponentStory<typeof ProductList> = (args) => (
     <ProductList {...args} />
 );
-const getArgs = (status: 'Active' | 'InActive') => ({
-    listTitle: status,
+
+const getArgs = (ProductStatus: 'Active' | 'InActive') => ({
+    listTitle: ProductStatus,
     products: [
         {
-            id: 0,
-            name: 'Product0',
-            photoURL: 'https://picsum.photos/100/40',
-            status,
+            ProductID: 0,
+            ProductName: 'Product1',
+            ProductPhotoURL: 'https://picsum.photos/100/40',
+            ProductStatus,
         },
         {
-            id: 1,
-            name: 'Product1',
-            photoURL: 'https://picsum.photos/100/40',
-            status,
+            ProductID: 1,
+            ProductName: 'Product2',
+            ProductPhotoURL: 'https://picsum.photos/100/40',
+            ProductStatus,
         },
     ]
 });

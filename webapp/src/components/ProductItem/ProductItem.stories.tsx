@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import ProductItem from './ProductItem';
+import { Product } from '../interfaces';
 
 export default {
     title: 'ProductItem',
@@ -9,11 +10,11 @@ export default {
 
 const Template: ComponentStory<typeof ProductItem> = (args) => <ProductItem {...args} />
 
-const getArgs = (status: 'Active' | 'InActive') => ({
-    id: 0,
-    name: 'Fake Name',
-    photoURL: '/fake-url',
-    status,
+const getArgs = (ProductStatus: 'Active' | 'InActive'): Product => ({
+    ProductID: 0,
+    ProductName: 'Fake Name',
+    ProductPhotoURL: '/fake-url',
+    ProductStatus,
 });
 
 export const activeProductItem = Template.bind({});
