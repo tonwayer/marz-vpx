@@ -25,7 +25,7 @@ jobs:
       - name: Run tests
         run: npm run test
 
-  api.orders:
+  api-orders:
     runs-on: ubuntu-latest
 
     strategy:
