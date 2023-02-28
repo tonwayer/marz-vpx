@@ -5,10 +5,9 @@ import Spinner from "../../components/Spinner/Spinner";
 import { getAllProducts } from "../ApiHelper";
 import PageWrapper from '../PageWrapper';
 
-
 const ProductsPage = () => {
   const [loadingState, setLoadingState] = useState<'WAITING' | 'LOADED' | 'ERROR'>('WAITING');
-  const [data, setData] = useState<ProductData>({Active: [], InActive: []});
+  const [data, setData] = useState<ProductData>({ Active: [], InActive: [] });
 
   const getProducts = async () => {
     setLoadingState('WAITING');
@@ -37,14 +36,14 @@ const ProductsPage = () => {
         className="flex flex-row justify-center w-full pt-4"
         data-testid="pipeline-container"
       >
-          <ProductList
-            listTitle='Active'
-            products={data.Active}
-          />
-          <ProductList
-            listTitle='InActive'
-            products={data.InActive}
-          />
+        <ProductList
+          listTitle='Active'
+          products={data.Active}
+        />
+        <ProductList
+          listTitle='InActive'
+          products={data.InActive}
+        />
       </div>
     );
   else
@@ -59,7 +58,7 @@ const ProductsPage = () => {
 
   return (
     <PageWrapper>
-      { content }
+      {content}
     </PageWrapper>
   );
 };
