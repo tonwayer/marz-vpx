@@ -34,7 +34,7 @@ const ProductsPage = () => {
     content = (
       <div
         className="flex flex-row justify-center w-full pt-4"
-        data-testid="pipeline-container"
+        data-testid="products-container"
       >
         <ProductList
           listTitle='Active'
