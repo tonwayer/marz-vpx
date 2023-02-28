@@ -1,20 +1,26 @@
 name: webapp
+
 on: [push, pull_request]
+
 jobs:
-  working-directory: ./webapp
   tests:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./webapp
+
     steps:
-      - run: echo "Testing webapp"
       - name: Check out repository code
         uses: actions/checkout@v3
+ 
       - name: Install node
         uses: actions/setup-node@v3
         with:
           node-version: 17.9.1
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run tests
         run: npm run test
