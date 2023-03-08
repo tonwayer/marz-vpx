@@ -52,7 +52,7 @@ const HomePage = () => {
     setLoadingState(DATA_STATES.loaded);
   };
 
-  const handleDragEnd = (result: any) => {
+  const handleDragEnd = async (result: any) => {
     const { source, destination } = result;
     if (!destination) return;
     const sourceKey = ID_LIST_MAP[source.droppableId as keyof IdList] as keyof OrderData;
@@ -68,16 +68,23 @@ const HomePage = () => {
       setData({ ...data, [sourceKey]: sourceClone });
     }
     else {
+        setLoadingState(DATA_STATES.waiting);
         const sourceClone = Array.from(data[sourceKey]);
         const destClone = Array.from(data[destKey]);
         const [removed] = sourceClone.splice(sourceIndex, 1);
         destClone.splice(destIndex, 0, removed);
         destClone[destIndex].OrderStatus = destKey;
-        setData({
-          ...data,
-          [sourceKey]: sourceClone,
-          [destKey]: destClone,
-        });
+        const orderStatusUpdated = await updateOrderStatus(removed, destKey);
+        if (orderStatusUpdated) {
+          setData({
+            ...data,
+            [sourceKey]: sourceClone,
+            [destKey]: destClone,
+          });
+          setLoadingState(DATA_STATES.loaded);
+        } else {
+          setLoadingState(DATA_STATES.error);
+        }
     }
   };
 
